@@ -1,0 +1,117 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"name\":\"pairs-single\",\"namespace\":\"php-pairs-20261124-125310-83f3\"},\"spec\":{\"activeDeadlineSeconds\":900,\"backoffLimit\":0,\"template\":{\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"args\":[\"count\",\"--prefix\",\"runs/php-pairs-20261124-125310-83f3\"],\"env\":[{\"name\":\"S3_ENDPOINT\",\"value\":\"http://rustfs:9000\"}],\"envFrom\":[{\"secretRef\":{\"name\":\"s3-access\"}}],\"image\":\"php-pairs-hw5:local\",\"imagePullPolicy\":\"IfNotPresent\",\"name\":\"workload\",\"resources\":{\"limits\":{\"cpu\":\"1\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"200m\",\"memory\":\"64Mi\"}}}],\"restartPolicy\":\"Never\"}}}}\n"
+    },
+    "creationTimestamp": "2026-11-24T12:54:17Z",
+    "generation": 1,
+    "labels": {
+      "batch.kubernetes.io/controller-uid": "3d0d2514-cb5c-427d-97dd-c8bd6d78107f",
+      "batch.kubernetes.io/job-name": "pairs-single",
+      "controller-uid": "3d0d2514-cb5c-427d-97dd-c8bd6d78107f",
+      "job-name": "pairs-single"
+    },
+    "name": "pairs-single",
+    "namespace": "php-pairs-20261124-125310-83f3",
+    "resourceVersion": "801",
+    "uid": "3d0d2514-cb5c-427d-97dd-c8bd6d78107f"
+  },
+  "spec": {
+    "activeDeadlineSeconds": 900,
+    "backoffLimit": 0,
+    "completionMode": "NonIndexed",
+    "completions": 1,
+    "manualSelector": false,
+    "parallelism": 1,
+    "podReplacementPolicy": "TerminatingOrFailed",
+    "selector": {
+      "matchLabels": {
+        "batch.kubernetes.io/controller-uid": "3d0d2514-cb5c-427d-97dd-c8bd6d78107f"
+      }
+    },
+    "suspend": false,
+    "template": {
+      "metadata": {
+        "labels": {
+          "batch.kubernetes.io/controller-uid": "3d0d2514-cb5c-427d-97dd-c8bd6d78107f",
+          "batch.kubernetes.io/job-name": "pairs-single",
+          "controller-uid": "3d0d2514-cb5c-427d-97dd-c8bd6d78107f",
+          "job-name": "pairs-single"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "args": [
+              "count",
+              "--prefix",
+              "runs/php-pairs-20261124-125310-83f3"
+            ],
+            "env": [
+              {
+                "name": "S3_ENDPOINT",
+                "value": "http://rustfs:9000"
+              }
+            ],
+            "envFrom": [
+              {
+                "secretRef": {
+                  "name": "s3-access"
+                }
+              }
+            ],
+            "image": "php-pairs-hw5:local",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "workload",
+            "resources": {
+              "limits": {
+                "cpu": "1",
+                "memory": "64Mi"
+              },
+              "requests": {
+                "cpu": "200m",
+                "memory": "64Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File"
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Never",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30
+      }
+    }
+  },
+  "status": {
+    "completionTime": "2026-11-24T12:54:25Z",
+    "conditions": [
+      {
+        "lastProbeTime": "2026-11-24T12:54:25Z",
+        "lastTransitionTime": "2026-11-24T12:54:25Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "SuccessCriteriaMet"
+      },
+      {
+        "lastProbeTime": "2026-11-24T12:54:25Z",
+        "lastTransitionTime": "2026-11-24T12:54:25Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "Complete"
+      }
+    ],
+    "ready": 0,
+    "startTime": "2026-11-24T12:54:17Z",
+    "succeeded": 1,
+    "terminating": 0,
+    "uncountedTerminatedPods": {}
+  }
+}

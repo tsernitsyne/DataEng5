@@ -1,0 +1,28 @@
+$ kubectl --context kind-dataeng5 version
+Client Version: v1.36.1
+Kustomize Version: v5.8.1
+Server Version: v1.36.4
+exit=0
+$ kubectl --context kind-dataeng5 get nodes -o wide
+NAME                     STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                       KERNEL-VERSION                              CONTAINER-RUNTIME
+dataeng5-control-plane   Ready    control-plane   6m54s   v1.36.4   172.22.0.2    <none>        Debian GNU/Linux 13 (trixie)   6.18.58.1-microsoft-standard-WSL2 (amd64)   containerd://2.3.4
+exit=0
+$ kubectl --context kind-dataeng5 -n php-pairs-20261124-125310-83f3 get jobs,deploy,svc,pvc
+NAME                     STATUS     COMPLETIONS   DURATION   AGE
+job.batch/pairs-map      Complete   4/4           6s         4m26s
+job.batch/pairs-oom      Failed     0/1           5m13s      5m13s
+job.batch/pairs-probe    Complete   1/1           8s         5m8s
+job.batch/pairs-reduce   Complete   1/1           3s         4m19s
+job.batch/pairs-single   Complete   1/1           8s         4m59s
+job.batch/pairs-split    Complete   1/1           23s        4m50s
+job.batch/s3-identity    Complete   1/1           5s         5m20s
+
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/rustfs   1/1     1            1           5m56s
+
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/rustfs   ClusterIP   10.96.193.100   <none>        9000/TCP   5m56s
+
+NAME                                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/rustfs-data   Bound    pvc-77e215ae-1c9a-426f-9f7c-13252e01d69e   4Gi        RWO            standard       <unset>                 5m56s
+exit=0

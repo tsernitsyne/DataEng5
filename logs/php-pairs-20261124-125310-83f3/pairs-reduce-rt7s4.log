@@ -1,0 +1,2 @@
+{"mode": "reduce", "stage": "start"}
+{"mode": "reduce", "distinct_pairs": 15914, "pair_occurrences": 135284, "top10": [[["mysql", "php"], 2094], [["git", "php"], 1686], [["laravel", "php"], 1342], [["git", "mysql"], 1116], [["javascript", "php"], 1101], [["php", "postgresql"], 975], [["docker", "php"], 907], [["php", "symfony"], 872], [["html", "php"], 837], [["php", "sql"], 800]]}

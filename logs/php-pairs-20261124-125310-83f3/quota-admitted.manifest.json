@@ -1,0 +1,41 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "name": "quota-admitted",
+    "namespace": "php-pairs-20261124-125310-83f3-quota"
+  },
+  "spec": {
+    "activeDeadlineSeconds": 900,
+    "backoffLimit": 0,
+    "template": {
+      "spec": {
+        "restartPolicy": "Never",
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "name": "workload",
+            "image": "php-pairs-hw5:local",
+            "imagePullPolicy": "IfNotPresent",
+            "args": [],
+            "resources": {
+              "requests": {
+                "cpu": "400m",
+                "memory": "64Mi"
+              },
+              "limits": {
+                "cpu": "400m",
+                "memory": "512Mi"
+              }
+            },
+            "command": [
+              "python",
+              "-c",
+              "import time; time.sleep(300)"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

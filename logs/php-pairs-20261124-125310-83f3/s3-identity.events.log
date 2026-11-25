@@ -1,0 +1,26 @@
+$ kubectl --context kind-dataeng5 -n php-pairs-20261124-125310-83f3 get events --sort-by=.metadata.creationTimestamp
+LAST SEEN   TYPE      REASON                  OBJECT                              MESSAGE
+43s         Normal    ScalingReplicaSet       deployment/rustfs                   Scaled up replica set rustfs-5d5d5d98b9 from 0 to 1
+43s         Normal    Provisioning            persistentvolumeclaim/rustfs-data   External provisioner is provisioning volume for claim "php-pairs-20261124-125310-83f3/rustfs-data"
+43s         Normal    SuccessfulCreate        replicaset/rustfs-5d5d5d98b9        Created pod: rustfs-5d5d5d98b9-d22lq
+43s         Normal    ExternalProvisioning    persistentvolumeclaim/rustfs-data   Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+43s         Normal    WaitForFirstConsumer    persistentvolumeclaim/rustfs-data   waiting for first consumer to be created before binding
+40s         Normal    ProvisioningSucceeded   persistentvolumeclaim/rustfs-data   Successfully provisioned volume pvc-77e215ae-1c9a-426f-9f7c-13252e01d69e
+39s         Normal    Scheduled               pod/rustfs-5d5d5d98b9-d22lq         Successfully assigned php-pairs-20261124-125310-83f3/rustfs-5d5d5d98b9-d22lq to dataeng5-control-plane
+39s         Normal    Pulling                 pod/rustfs-5d5d5d98b9-d22lq         Pulling image "busybox:1.37"
+34s         Normal    Pulled                  pod/rustfs-5d5d5d98b9-d22lq         Successfully pulled image "busybox:1.37" in 4.813s (4.813s including waiting). Image size: 2222118 bytes.
+34s         Normal    Created                 pod/rustfs-5d5d5d98b9-d22lq         Container created
+34s         Normal    Started                 pod/rustfs-5d5d5d98b9-d22lq         Container started
+34s         Normal    Pulling                 pod/rustfs-5d5d5d98b9-d22lq         Pulling image "rustfs/rustfs:1.0.0"
+22s         Normal    Pulled                  pod/rustfs-5d5d5d98b9-d22lq         Successfully pulled image "rustfs/rustfs:1.0.0" in 12.141s (12.141s including waiting). Image size: 109669715 bytes.
+22s         Warning   Unhealthy               pod/rustfs-5d5d5d98b9-d22lq         Readiness probe failed: dial tcp 10.244.0.6:9000: connect: connection refused
+22s         Normal    Started                 pod/rustfs-5d5d5d98b9-d22lq         Container started
+22s         Normal    Created                 pod/rustfs-5d5d5d98b9-d22lq         Container created
+7s          Normal    Scheduled               pod/s3-identity-7mtm8               Successfully assigned php-pairs-20261124-125310-83f3/s3-identity-7mtm8 to dataeng5-control-plane
+7s          Normal    SuccessfulCreate        job/s3-identity                     Created pod: s3-identity-7mtm8
+6s          Normal    Pulled                  pod/s3-identity-7mtm8               Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+6s          Normal    Created                 pod/s3-identity-7mtm8               Container created
+6s          Normal    Started                 pod/s3-identity-7mtm8               Container started
+2s          Normal    Completed               job/s3-identity                     Job completed
+
+exit=0

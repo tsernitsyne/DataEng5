@@ -1,0 +1,3 @@
+{"mode": "count", "stage": "start"}
+{"mode": "count", "stage": "count", "key": "raw/it_vacancies_2024.csv", "index": null}
+{"mode": "count", "index": null, "key": "raw/it_vacancies_2024.csv", "output": "runs/php-pairs-20261124-125310-83f3/single.csv", "input_rows": 229388, "selected_rows": 5379, "distinct_pairs": 15914, "pair_occurrences": 135284, "peak_bytes": 48824320, "cgroup_limit": "536870912", "peak_source": "/sys/fs/cgroup/memory.peak"}

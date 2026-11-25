@@ -1,0 +1,46 @@
+$ docker build -t php-pairs-hw5:local .
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 279B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#2 DONE 0.8s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 82B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 65B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:82836454a795d9d75549a9e157fd08dbac6c383292cf89e99f4248a97ce6b2ff
+#5 resolve docker.io/library/python:3.12-slim-bookworm@sha256:82836454a795d9d75549a9e157fd08dbac6c383292cf89e99f4248a97ce6b2ff 0.0s done
+#5 DONE 0.0s
+
+#6 [3/5] COPY requirements.txt .
+#6 CACHED
+
+#7 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+#7 CACHED
+
+#8 [2/5] WORKDIR /app
+#8 CACHED
+
+#9 [5/5] COPY pairs.py .
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:51fb79f4683df5420119a44a04686c934e0d2c43b16fa196c570990fcdc60137 done
+#10 exporting config sha256:3abc931e4bc5d753dfd04f0241fcd6f74edd6aee3fab2f45fdb1797c6ec2118c done
+#10 exporting attestation manifest sha256:dca9bbea438a60e53a3daadad7b32267c4d0007cd5e6facbe9c68b82bbd1700d
+#10 exporting attestation manifest sha256:dca9bbea438a60e53a3daadad7b32267c4d0007cd5e6facbe9c68b82bbd1700d 0.0s done
+#10 exporting manifest list sha256:061f7bec1552c3a52b1f7e876f094cbdb557abeb7717efa501001107354f3503 0.0s done
+#10 naming to docker.io/library/php-pairs-hw5:local done
+#10 unpacking to docker.io/library/php-pairs-hw5:local done
+#10 DONE 0.1s
+
+exit=0

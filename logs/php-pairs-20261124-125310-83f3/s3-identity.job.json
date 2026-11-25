@@ -1,0 +1,115 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"name\":\"s3-identity\",\"namespace\":\"php-pairs-20261124-125310-83f3\"},\"spec\":{\"activeDeadlineSeconds\":900,\"backoffLimit\":0,\"template\":{\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"args\":[\"identity\"],\"env\":[{\"name\":\"S3_ENDPOINT\",\"value\":\"http://rustfs:9000\"}],\"envFrom\":[{\"secretRef\":{\"name\":\"s3-access\"}}],\"image\":\"php-pairs-hw5:local\",\"imagePullPolicy\":\"IfNotPresent\",\"name\":\"workload\",\"resources\":{\"limits\":{\"cpu\":\"1\",\"memory\":\"256Mi\"},\"requests\":{\"cpu\":\"200m\",\"memory\":\"64Mi\"}}}],\"restartPolicy\":\"Never\"}}}}\n"
+    },
+    "creationTimestamp": "2026-11-24T12:53:56Z",
+    "generation": 1,
+    "labels": {
+      "batch.kubernetes.io/controller-uid": "1d3c81c6-82d0-4c49-bf52-fb9e489f5a17",
+      "batch.kubernetes.io/job-name": "s3-identity",
+      "controller-uid": "1d3c81c6-82d0-4c49-bf52-fb9e489f5a17",
+      "job-name": "s3-identity"
+    },
+    "name": "s3-identity",
+    "namespace": "php-pairs-20261124-125310-83f3",
+    "resourceVersion": "707",
+    "uid": "1d3c81c6-82d0-4c49-bf52-fb9e489f5a17"
+  },
+  "spec": {
+    "activeDeadlineSeconds": 900,
+    "backoffLimit": 0,
+    "completionMode": "NonIndexed",
+    "completions": 1,
+    "manualSelector": false,
+    "parallelism": 1,
+    "podReplacementPolicy": "TerminatingOrFailed",
+    "selector": {
+      "matchLabels": {
+        "batch.kubernetes.io/controller-uid": "1d3c81c6-82d0-4c49-bf52-fb9e489f5a17"
+      }
+    },
+    "suspend": false,
+    "template": {
+      "metadata": {
+        "labels": {
+          "batch.kubernetes.io/controller-uid": "1d3c81c6-82d0-4c49-bf52-fb9e489f5a17",
+          "batch.kubernetes.io/job-name": "s3-identity",
+          "controller-uid": "1d3c81c6-82d0-4c49-bf52-fb9e489f5a17",
+          "job-name": "s3-identity"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "args": [
+              "identity"
+            ],
+            "env": [
+              {
+                "name": "S3_ENDPOINT",
+                "value": "http://rustfs:9000"
+              }
+            ],
+            "envFrom": [
+              {
+                "secretRef": {
+                  "name": "s3-access"
+                }
+              }
+            ],
+            "image": "php-pairs-hw5:local",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "workload",
+            "resources": {
+              "limits": {
+                "cpu": "1",
+                "memory": "256Mi"
+              },
+              "requests": {
+                "cpu": "200m",
+                "memory": "64Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File"
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Never",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30
+      }
+    }
+  },
+  "status": {
+    "completionTime": "2026-11-24T12:54:01Z",
+    "conditions": [
+      {
+        "lastProbeTime": "2026-11-24T12:54:01Z",
+        "lastTransitionTime": "2026-11-24T12:54:01Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "SuccessCriteriaMet"
+      },
+      {
+        "lastProbeTime": "2026-11-24T12:54:01Z",
+        "lastTransitionTime": "2026-11-24T12:54:01Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "Complete"
+      }
+    ],
+    "ready": 0,
+    "startTime": "2026-11-24T12:53:56Z",
+    "succeeded": 1,
+    "terminating": 0,
+    "uncountedTerminatedPods": {}
+  }
+}

@@ -1,0 +1,311 @@
+{
+  "context": "kind-dataeng5",
+  "namespace": "php-pairs-20261124-125310-83f3",
+  "quota_namespace": "php-pairs-20261124-125310-83f3-quota",
+  "status": "complete",
+  "s3_migration": {
+    "bucket": "hh-lake",
+    "objects": [
+      {
+        "key": "raw/it_vacancies_2024.csv",
+        "bytes": 847619384
+      },
+      {
+        "key": "results/php/skills_1.csv",
+        "bytes": 29278
+      },
+      {
+        "key": "results/php/skills_2.csv",
+        "bytes": 689735
+      },
+      {
+        "key": "results/php/skills_3.csv",
+        "bytes": 7197658
+      },
+      {
+        "key": "segments/php.csv",
+        "bytes": 18705639
+      }
+    ]
+  },
+  "s3_identity": {
+    "mode": "identity",
+    "bytes": 847619384,
+    "sha256": "303db922b541e4440906f5a7e8be32fb55e8808f950ffddb8c272f1548212a65"
+  },
+  "oom": {
+    "limit_mib": 24,
+    "reason": "OOMKilled",
+    "exit_code": 137
+  },
+  "memory_probe": {
+    "mode": "count",
+    "index": null,
+    "key": "raw/it_vacancies_2024.csv",
+    "output": "runs/php-pairs-20261124-125310-83f3/single.csv",
+    "input_rows": 229388,
+    "selected_rows": 5379,
+    "distinct_pairs": 15914,
+    "pair_occurrences": 135284,
+    "peak_bytes": 48824320,
+    "cgroup_limit": "536870912",
+    "peak_source": "/sys/fs/cgroup/memory.peak"
+  },
+  "selected_limit_mib": 64,
+  "memory_final": {
+    "mode": "count",
+    "index": null,
+    "key": "raw/it_vacancies_2024.csv",
+    "output": "runs/php-pairs-20261124-125310-83f3/single.csv",
+    "input_rows": 229388,
+    "selected_rows": 5379,
+    "distinct_pairs": 15914,
+    "pair_occurrences": 135284,
+    "peak_bytes": 48238592,
+    "cgroup_limit": "67108864",
+    "peak_source": "/sys/fs/cgroup/memory.peak"
+  },
+  "split": {
+    "mode": "split",
+    "rows_per_part": [
+      57347,
+      57347,
+      57347,
+      57347
+    ],
+    "input_rows": 229388
+  },
+  "workers": [
+    {
+      "mode": "map",
+      "index": 0,
+      "key": "runs/php-pairs-20261124-125310-83f3/parts/0.csv",
+      "output": "runs/php-pairs-20261124-125310-83f3/maps/0.csv",
+      "input_rows": 57347,
+      "selected_rows": 1321,
+      "distinct_pairs": 8134,
+      "pair_occurrences": 33422,
+      "peak_bytes": 45842432,
+      "cgroup_limit": "268435456",
+      "peak_source": "/sys/fs/cgroup/memory.peak"
+    },
+    {
+      "mode": "map",
+      "index": 1,
+      "key": "runs/php-pairs-20261124-125310-83f3/parts/1.csv",
+      "output": "runs/php-pairs-20261124-125310-83f3/maps/1.csv",
+      "input_rows": 57347,
+      "selected_rows": 1418,
+      "distinct_pairs": 8471,
+      "pair_occurrences": 36960,
+      "peak_bytes": 45895680,
+      "cgroup_limit": "268435456",
+      "peak_source": "/sys/fs/cgroup/memory.peak"
+    },
+    {
+      "mode": "map",
+      "index": 2,
+      "key": "runs/php-pairs-20261124-125310-83f3/parts/2.csv",
+      "output": "runs/php-pairs-20261124-125310-83f3/maps/2.csv",
+      "input_rows": 57347,
+      "selected_rows": 1310,
+      "distinct_pairs": 7616,
+      "pair_occurrences": 32496,
+      "peak_bytes": 45858816,
+      "cgroup_limit": "268435456",
+      "peak_source": "/sys/fs/cgroup/memory.peak"
+    },
+    {
+      "mode": "map",
+      "index": 3,
+      "key": "runs/php-pairs-20261124-125310-83f3/parts/3.csv",
+      "output": "runs/php-pairs-20261124-125310-83f3/maps/3.csv",
+      "input_rows": 57347,
+      "selected_rows": 1330,
+      "distinct_pairs": 7964,
+      "pair_occurrences": 32406,
+      "peak_bytes": 45981696,
+      "cgroup_limit": "268435456",
+      "peak_source": "/sys/fs/cgroup/memory.peak"
+    }
+  ],
+  "reducer": {
+    "mode": "reduce",
+    "distinct_pairs": 15914,
+    "pair_occurrences": 135284,
+    "top10": [
+      [
+        [
+          "mysql",
+          "php"
+        ],
+        2094
+      ],
+      [
+        [
+          "git",
+          "php"
+        ],
+        1686
+      ],
+      [
+        [
+          "laravel",
+          "php"
+        ],
+        1342
+      ],
+      [
+        [
+          "git",
+          "mysql"
+        ],
+        1116
+      ],
+      [
+        [
+          "javascript",
+          "php"
+        ],
+        1101
+      ],
+      [
+        [
+          "php",
+          "postgresql"
+        ],
+        975
+      ],
+      [
+        [
+          "docker",
+          "php"
+        ],
+        907
+      ],
+      [
+        [
+          "php",
+          "symfony"
+        ],
+        872
+      ],
+      [
+        [
+          "html",
+          "php"
+        ],
+        837
+      ],
+      [
+        [
+          "php",
+          "sql"
+        ],
+        800
+      ]
+    ]
+  },
+  "comparison": {
+    "all_pairs_equal": true,
+    "top10": [
+      [
+        [
+          "mysql",
+          "php"
+        ],
+        2094
+      ],
+      [
+        [
+          "git",
+          "php"
+        ],
+        1686
+      ],
+      [
+        [
+          "laravel",
+          "php"
+        ],
+        1342
+      ],
+      [
+        [
+          "git",
+          "mysql"
+        ],
+        1116
+      ],
+      [
+        [
+          "javascript",
+          "php"
+        ],
+        1101
+      ],
+      [
+        [
+          "php",
+          "postgresql"
+        ],
+        975
+      ],
+      [
+        [
+          "docker",
+          "php"
+        ],
+        907
+      ],
+      [
+        [
+          "php",
+          "symfony"
+        ],
+        872
+      ],
+      [
+        [
+          "html",
+          "php"
+        ],
+        837
+      ],
+      [
+        [
+          "php",
+          "sql"
+        ],
+        800
+      ]
+    ]
+  },
+  "scheduler_capacity": {
+    "node": "dataeng5-control-plane",
+    "allocatable_m": 12000,
+    "already_requested_m": 1050,
+    "lab_request": "7300m"
+  },
+  "cpu_pending": {
+    "pod": "cpu-wait-f2kps",
+    "phase": "Pending",
+    "message": "0/1 nodes are available: 1 Insufficient cpu. no new claims to deallocate, preemption: not eligible due to preemptionPolicy=Never."
+  },
+  "preemption": {
+    "victim": "cpu-low-sglcj",
+    "winner": "cpu-high-6pdnk",
+    "message": "Preempted by pod f19743d6-900d-4d4e-8910-fbc5b58ece8a on node dataeng5-control-plane"
+  },
+  "quota": {
+    "admitted": "quota-admitted-xbv45",
+    "requested": "200m",
+    "hard": {
+      "requests.cpu": "500m"
+    },
+    "used": {
+      "requests.cpu": "400m"
+    },
+    "message": "Error creating: pods \"quota-rejected-grwl9\" is forbidden: exceeded quota: cpu-budget, requested: requests.cpu=200m, used: requests.cpu=400m, limited: requests.cpu=500m"
+  }
+}

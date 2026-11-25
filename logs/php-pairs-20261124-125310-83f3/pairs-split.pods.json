@@ -1,0 +1,214 @@
+[
+  {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "creationTimestamp": "2026-11-24T12:54:26Z",
+      "generateName": "pairs-split-",
+      "generation": 1,
+      "labels": {
+        "batch.kubernetes.io/controller-uid": "49df70fb-3ef3-43ae-b742-c5ad5c243752",
+        "batch.kubernetes.io/job-name": "pairs-split",
+        "controller-uid": "49df70fb-3ef3-43ae-b742-c5ad5c243752",
+        "job-name": "pairs-split"
+      },
+      "name": "pairs-split-4lcb4",
+      "namespace": "php-pairs-20261124-125310-83f3",
+      "ownerReferences": [
+        {
+          "apiVersion": "batch/v1",
+          "blockOwnerDeletion": true,
+          "controller": true,
+          "kind": "Job",
+          "name": "pairs-split",
+          "uid": "49df70fb-3ef3-43ae-b742-c5ad5c243752"
+        }
+      ],
+      "resourceVersion": "854",
+      "uid": "b04915ee-cff8-42a0-9161-acff80e3be5e"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "args": [
+            "split",
+            "--prefix",
+            "runs/php-pairs-20261124-125310-83f3",
+            "--parts",
+            "4"
+          ],
+          "env": [
+            {
+              "name": "S3_ENDPOINT",
+              "value": "http://rustfs:9000"
+            }
+          ],
+          "envFrom": [
+            {
+              "secretRef": {
+                "name": "s3-access"
+              }
+            }
+          ],
+          "image": "php-pairs-hw5:local",
+          "imagePullPolicy": "IfNotPresent",
+          "name": "workload",
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "768Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "64Mi"
+            }
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "dataeng5-control-plane",
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Never",
+      "schedulerName": "default-scheduler",
+      "securityContext": {},
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "allocatedResources": {
+        "cpu": "200m",
+        "memory": "64Mi"
+      },
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:48Z",
+          "observedGeneration": 1,
+          "status": "False",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:26Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:47Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:47Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:26Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containerStatuses": [
+        {
+          "allocatedResources": {
+            "cpu": "200m",
+            "memory": "64Mi"
+          },
+          "containerID": "containerd://26abf886d1b56b33737500db84970af9ac9334629330d1beb34d5e6d7e97b01c",
+          "image": "docker.io/library/php-pairs-hw5:local",
+          "imageID": "docker.io/library/import-2026-11-24@sha256:4aab2fd19a46806b40d0d2a1175239d4e7ace1daf229ee133d01defe899f4cb3",
+          "lastState": {},
+          "name": "workload",
+          "ready": false,
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "768Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "64Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": false,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://26abf886d1b56b33737500db84970af9ac9334629330d1beb34d5e6d7e97b01c",
+              "exitCode": 0,
+              "finishedAt": "2026-11-24T12:54:47Z",
+              "reason": "Completed",
+              "startedAt": "2026-11-24T12:54:26Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 0,
+              "supplementalGroups": [
+                0
+              ],
+              "uid": 10001
+            }
+          }
+        }
+      ],
+      "hostIP": "172.22.0.2",
+      "hostIPs": [
+        {
+          "ip": "172.22.0.2"
+        }
+      ],
+      "observedGeneration": 1,
+      "phase": "Succeeded",
+      "podIP": "10.244.0.11",
+      "podIPs": [
+        {
+          "ip": "10.244.0.11"
+        }
+      ],
+      "qosClass": "Burstable",
+      "resources": {
+        "limits": {
+          "cpu": "1",
+          "memory": "768Mi"
+        },
+        "requests": {
+          "cpu": "181m",
+          "memory": "64Mi"
+        }
+      },
+      "startTime": "2026-11-24T12:54:26Z"
+    }
+  }
+]

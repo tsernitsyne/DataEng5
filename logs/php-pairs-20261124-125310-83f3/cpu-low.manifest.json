@@ -1,0 +1,45 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "name": "cpu-low",
+    "namespace": "php-pairs-20261124-125310-83f3"
+  },
+  "spec": {
+    "activeDeadlineSeconds": 900,
+    "backoffLimit": 0,
+    "template": {
+      "spec": {
+        "restartPolicy": "Never",
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "name": "workload",
+            "image": "php-pairs-hw5:local",
+            "imagePullPolicy": "IfNotPresent",
+            "args": [],
+            "resources": {
+              "requests": {
+                "cpu": "7300m",
+                "memory": "32Mi"
+              },
+              "limits": {
+                "cpu": "7300m",
+                "memory": "64Mi"
+              }
+            },
+            "command": [
+              "python",
+              "-c",
+              "import time; time.sleep(300)"
+            ]
+          }
+        ],
+        "priorityClassName": "php-pairs-lab-low",
+        "nodeSelector": {
+          "kubernetes.io/hostname": "dataeng5-control-plane"
+        }
+      }
+    }
+  }
+}

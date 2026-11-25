@@ -1,0 +1,4 @@
+$ kubectl --context docker-desktop version
+error: context "docker-desktop" does not exist
+
+exit=1

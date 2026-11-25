@@ -1,0 +1,32 @@
+$ kubectl --context kind-dataeng5 -n php-pairs-20261124-125310-83f3 get events --sort-by=.metadata.creationTimestamp
+LAST SEEN   TYPE      REASON                  OBJECT                              MESSAGE
+48s         Normal    SuccessfulCreate        replicaset/rustfs-5d5d5d98b9        Created pod: rustfs-5d5d5d98b9-d22lq
+48s         Normal    ScalingReplicaSet       deployment/rustfs                   Scaled up replica set rustfs-5d5d5d98b9 from 0 to 1
+48s         Normal    Provisioning            persistentvolumeclaim/rustfs-data   External provisioner is provisioning volume for claim "php-pairs-20261124-125310-83f3/rustfs-data"
+48s         Normal    ExternalProvisioning    persistentvolumeclaim/rustfs-data   Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+48s         Normal    WaitForFirstConsumer    persistentvolumeclaim/rustfs-data   waiting for first consumer to be created before binding
+45s         Normal    ProvisioningSucceeded   persistentvolumeclaim/rustfs-data   Successfully provisioned volume pvc-77e215ae-1c9a-426f-9f7c-13252e01d69e
+44s         Normal    Pulling                 pod/rustfs-5d5d5d98b9-d22lq         Pulling image "busybox:1.37"
+44s         Normal    Scheduled               pod/rustfs-5d5d5d98b9-d22lq         Successfully assigned php-pairs-20261124-125310-83f3/rustfs-5d5d5d98b9-d22lq to dataeng5-control-plane
+39s         Normal    Pulled                  pod/rustfs-5d5d5d98b9-d22lq         Successfully pulled image "busybox:1.37" in 4.813s (4.813s including waiting). Image size: 2222118 bytes.
+39s         Normal    Created                 pod/rustfs-5d5d5d98b9-d22lq         Container created
+39s         Normal    Started                 pod/rustfs-5d5d5d98b9-d22lq         Container started
+39s         Normal    Pulling                 pod/rustfs-5d5d5d98b9-d22lq         Pulling image "rustfs/rustfs:1.0.0"
+27s         Normal    Pulled                  pod/rustfs-5d5d5d98b9-d22lq         Successfully pulled image "rustfs/rustfs:1.0.0" in 12.141s (12.141s including waiting). Image size: 109669715 bytes.
+27s         Normal    Created                 pod/rustfs-5d5d5d98b9-d22lq         Container created
+27s         Normal    Started                 pod/rustfs-5d5d5d98b9-d22lq         Container started
+27s         Warning   Unhealthy               pod/rustfs-5d5d5d98b9-d22lq         Readiness probe failed: dial tcp 10.244.0.6:9000: connect: connection refused
+12s         Normal    Scheduled               pod/s3-identity-7mtm8               Successfully assigned php-pairs-20261124-125310-83f3/s3-identity-7mtm8 to dataeng5-control-plane
+12s         Normal    SuccessfulCreate        job/s3-identity                     Created pod: s3-identity-7mtm8
+11s         Normal    Pulled                  pod/s3-identity-7mtm8               Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+11s         Normal    Created                 pod/s3-identity-7mtm8               Container created
+11s         Normal    Started                 pod/s3-identity-7mtm8               Container started
+7s          Normal    Completed               job/s3-identity                     Job completed
+5s          Normal    SuccessfulCreate        job/pairs-oom                       Created pod: pairs-oom-kdk9m
+5s          Normal    Created                 pod/pairs-oom-kdk9m                 Container created
+5s          Normal    Pulled                  pod/pairs-oom-kdk9m                 Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+5s          Normal    Scheduled               pod/pairs-oom-kdk9m                 Successfully assigned php-pairs-20261124-125310-83f3/pairs-oom-kdk9m to dataeng5-control-plane
+4s          Normal    Started                 pod/pairs-oom-kdk9m                 Container started
+2s          Warning   BackoffLimitExceeded    job/pairs-oom                       Job has reached the specified backoff limit
+
+exit=0

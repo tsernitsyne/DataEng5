@@ -1,0 +1,96 @@
+{
+  "execution": "local file split and reduce",
+  "part_stats": [
+    {
+      "input_rows": 57347,
+      "selected_rows": 1321
+    },
+    {
+      "input_rows": 57347,
+      "selected_rows": 1418
+    },
+    {
+      "input_rows": 57347,
+      "selected_rows": 1310
+    },
+    {
+      "input_rows": 57347,
+      "selected_rows": 1330
+    }
+  ],
+  "distinct_pairs": 15914,
+  "pair_occurrences": 135284,
+  "all_pairs_equal": true,
+  "top10": [
+    [
+      [
+        "mysql",
+        "php"
+      ],
+      2094
+    ],
+    [
+      [
+        "git",
+        "php"
+      ],
+      1686
+    ],
+    [
+      [
+        "laravel",
+        "php"
+      ],
+      1342
+    ],
+    [
+      [
+        "git",
+        "mysql"
+      ],
+      1116
+    ],
+    [
+      [
+        "javascript",
+        "php"
+      ],
+      1101
+    ],
+    [
+      [
+        "php",
+        "postgresql"
+      ],
+      975
+    ],
+    [
+      [
+        "docker",
+        "php"
+      ],
+      907
+    ],
+    [
+      [
+        "php",
+        "symfony"
+      ],
+      872
+    ],
+    [
+      [
+        "html",
+        "php"
+      ],
+      837
+    ],
+    [
+      [
+        "php",
+        "sql"
+      ],
+      800
+    ]
+  ]
+}

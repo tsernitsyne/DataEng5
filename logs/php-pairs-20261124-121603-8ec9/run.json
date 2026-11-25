@@ -1,0 +1,7 @@
+{
+  "context": "docker-desktop",
+  "namespace": "php-pairs-20261124-121603-8ec9",
+  "quota_namespace": "php-pairs-20261124-121603-8ec9-quota",
+  "status": "failed",
+  "error": "kubectl failed: error: context \"docker-desktop\" does not exist\n"
+}

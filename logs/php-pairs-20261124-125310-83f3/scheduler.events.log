@@ -1,0 +1,93 @@
+$ kubectl --context kind-dataeng5 -n php-pairs-20261124-125310-83f3 get events --sort-by=.metadata.creationTimestamp
+LAST SEEN   TYPE      REASON                  OBJECT                              MESSAGE
+2m18s       Normal    SuccessfulCreate        replicaset/rustfs-5d5d5d98b9        Created pod: rustfs-5d5d5d98b9-d22lq
+2m18s       Normal    WaitForFirstConsumer    persistentvolumeclaim/rustfs-data   waiting for first consumer to be created before binding
+2m18s       Normal    ExternalProvisioning    persistentvolumeclaim/rustfs-data   Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+2m18s       Normal    Provisioning            persistentvolumeclaim/rustfs-data   External provisioner is provisioning volume for claim "php-pairs-20261124-125310-83f3/rustfs-data"
+2m18s       Normal    ScalingReplicaSet       deployment/rustfs                   Scaled up replica set rustfs-5d5d5d98b9 from 0 to 1
+2m15s       Normal    ProvisioningSucceeded   persistentvolumeclaim/rustfs-data   Successfully provisioned volume pvc-77e215ae-1c9a-426f-9f7c-13252e01d69e
+2m14s       Normal    Scheduled               pod/rustfs-5d5d5d98b9-d22lq         Successfully assigned php-pairs-20261124-125310-83f3/rustfs-5d5d5d98b9-d22lq to dataeng5-control-plane
+2m14s       Normal    Pulling                 pod/rustfs-5d5d5d98b9-d22lq         Pulling image "busybox:1.37"
+2m9s        Normal    Pulled                  pod/rustfs-5d5d5d98b9-d22lq         Successfully pulled image "busybox:1.37" in 4.813s (4.813s including waiting). Image size: 2222118 bytes.
+2m9s        Normal    Pulling                 pod/rustfs-5d5d5d98b9-d22lq         Pulling image "rustfs/rustfs:1.0.0"
+2m9s        Normal    Created                 pod/rustfs-5d5d5d98b9-d22lq         Container created
+2m9s        Normal    Started                 pod/rustfs-5d5d5d98b9-d22lq         Container started
+117s        Warning   Unhealthy               pod/rustfs-5d5d5d98b9-d22lq         Readiness probe failed: dial tcp 10.244.0.6:9000: connect: connection refused
+117s        Normal    Started                 pod/rustfs-5d5d5d98b9-d22lq         Container started
+117s        Normal    Created                 pod/rustfs-5d5d5d98b9-d22lq         Container created
+117s        Normal    Pulled                  pod/rustfs-5d5d5d98b9-d22lq         Successfully pulled image "rustfs/rustfs:1.0.0" in 12.141s (12.141s including waiting). Image size: 109669715 bytes.
+102s        Normal    Scheduled               pod/s3-identity-7mtm8               Successfully assigned php-pairs-20261124-125310-83f3/s3-identity-7mtm8 to dataeng5-control-plane
+102s        Normal    SuccessfulCreate        job/s3-identity                     Created pod: s3-identity-7mtm8
+101s        Normal    Pulled                  pod/s3-identity-7mtm8               Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+101s        Normal    Created                 pod/s3-identity-7mtm8               Container created
+101s        Normal    Started                 pod/s3-identity-7mtm8               Container started
+97s         Normal    Completed               job/s3-identity                     Job completed
+95s         Normal    Created                 pod/pairs-oom-kdk9m                 Container created
+95s         Normal    Pulled                  pod/pairs-oom-kdk9m                 Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+95s         Normal    Scheduled               pod/pairs-oom-kdk9m                 Successfully assigned php-pairs-20261124-125310-83f3/pairs-oom-kdk9m to dataeng5-control-plane
+95s         Normal    SuccessfulCreate        job/pairs-oom                       Created pod: pairs-oom-kdk9m
+94s         Normal    Started                 pod/pairs-oom-kdk9m                 Container started
+92s         Warning   BackoffLimitExceeded    job/pairs-oom                       Job has reached the specified backoff limit
+90s         Normal    SuccessfulCreate        job/pairs-probe                     Created pod: pairs-probe-chhxp
+90s         Normal    Started                 pod/pairs-probe-chhxp               Container started
+90s         Normal    Created                 pod/pairs-probe-chhxp               Container created
+90s         Normal    Pulled                  pod/pairs-probe-chhxp               Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+90s         Normal    Scheduled               pod/pairs-probe-chhxp               Successfully assigned php-pairs-20261124-125310-83f3/pairs-probe-chhxp to dataeng5-control-plane
+82s         Normal    Completed               job/pairs-probe                     Job completed
+81s         Normal    Scheduled               pod/pairs-single-6zjng              Successfully assigned php-pairs-20261124-125310-83f3/pairs-single-6zjng to dataeng5-control-plane
+81s         Normal    Pulled                  pod/pairs-single-6zjng              Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+81s         Normal    Created                 pod/pairs-single-6zjng              Container created
+81s         Normal    Started                 pod/pairs-single-6zjng              Container started
+81s         Normal    SuccessfulCreate        job/pairs-single                    Created pod: pairs-single-6zjng
+73s         Normal    Completed               job/pairs-single                    Job completed
+72s         Normal    SuccessfulCreate        job/pairs-split                     Created pod: pairs-split-4lcb4
+72s         Normal    Started                 pod/pairs-split-4lcb4               Container started
+72s         Normal    Created                 pod/pairs-split-4lcb4               Container created
+72s         Normal    Pulled                  pod/pairs-split-4lcb4               Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+72s         Normal    Scheduled               pod/pairs-split-4lcb4               Successfully assigned php-pairs-20261124-125310-83f3/pairs-split-4lcb4 to dataeng5-control-plane
+49s         Normal    Completed               job/pairs-split                     Job completed
+48s         Normal    Pulled                  pod/pairs-map-1-87mzj               Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+48s         Normal    Scheduled               pod/pairs-map-3-jbkdr               Successfully assigned php-pairs-20261124-125310-83f3/pairs-map-3-jbkdr to dataeng5-control-plane
+48s         Normal    Pulled                  pod/pairs-map-3-jbkdr               Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+48s         Normal    Pulled                  pod/pairs-map-0-t2rt2               Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+48s         Normal    Created                 pod/pairs-map-0-t2rt2               Container created
+48s         Normal    Started                 pod/pairs-map-0-t2rt2               Container started
+48s         Normal    Scheduled               pod/pairs-map-1-87mzj               Successfully assigned php-pairs-20261124-125310-83f3/pairs-map-1-87mzj to dataeng5-control-plane
+48s         Normal    Started                 pod/pairs-map-3-jbkdr               Container started
+48s         Normal    Created                 pod/pairs-map-1-87mzj               Container created
+48s         Normal    Created                 pod/pairs-map-3-jbkdr               Container created
+48s         Normal    Started                 pod/pairs-map-2-99g5c               Container started
+48s         Normal    Created                 pod/pairs-map-2-99g5c               Container created
+48s         Normal    Pulled                  pod/pairs-map-2-99g5c               Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+48s         Normal    Scheduled               pod/pairs-map-2-99g5c               Successfully assigned php-pairs-20261124-125310-83f3/pairs-map-2-99g5c to dataeng5-control-plane
+48s         Normal    Started                 pod/pairs-map-1-87mzj               Container started
+48s         Normal    SuccessfulCreate        job/pairs-map                       Created pod: pairs-map-0-t2rt2
+48s         Normal    SuccessfulCreate        job/pairs-map                       Created pod: pairs-map-2-99g5c
+48s         Normal    SuccessfulCreate        job/pairs-map                       Created pod: pairs-map-1-87mzj
+48s         Normal    SuccessfulCreate        job/pairs-map                       Created pod: pairs-map-3-jbkdr
+48s         Normal    Scheduled               pod/pairs-map-0-t2rt2               Successfully assigned php-pairs-20261124-125310-83f3/pairs-map-0-t2rt2 to dataeng5-control-plane
+42s         Normal    Completed               job/pairs-map                       Job completed
+41s         Normal    SuccessfulCreate        job/pairs-reduce                    Created pod: pairs-reduce-rt7s4
+41s         Normal    Started                 pod/pairs-reduce-rt7s4              Container started
+41s         Normal    Created                 pod/pairs-reduce-rt7s4              Container created
+41s         Normal    Pulled                  pod/pairs-reduce-rt7s4              Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+41s         Normal    Scheduled               pod/pairs-reduce-rt7s4              Successfully assigned php-pairs-20261124-125310-83f3/pairs-reduce-rt7s4 to dataeng5-control-plane
+38s         Normal    Completed               job/pairs-reduce                    Job completed
+35s         Normal    SuccessfulCreate        job/cpu-low                         Created pod: cpu-low-sglcj
+35s         Normal    Scheduled               pod/cpu-low-sglcj                   Successfully assigned php-pairs-20261124-125310-83f3/cpu-low-sglcj to dataeng5-control-plane
+35s         Normal    Pulled                  pod/cpu-low-sglcj                   Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+35s         Normal    Created                 pod/cpu-low-sglcj                   Container created
+35s         Normal    Started                 pod/cpu-low-sglcj                   Container started
+32s         Normal    Killing                 pod/cpu-low-sglcj                   Stopping container workload
+32s         Normal    Preempted               pod/cpu-low-sglcj                   Preempted by pod f19743d6-900d-4d4e-8910-fbc5b58ece8a on node dataeng5-control-plane
+32s         Warning   FailedScheduling        pod/cpu-high-6pdnk                  0/1 nodes are available: 1 Insufficient cpu.
+32s         Warning   FailedScheduling        pod/cpu-wait-f2kps                  0/1 nodes are available: 1 Insufficient cpu. no new claims to deallocate, preemption: not eligible due to preemptionPolicy=Never.
+32s         Normal    SuccessfulCreate        job/cpu-wait                        Created pod: cpu-wait-f2kps
+32s         Normal    SuccessfulCreate        job/cpu-high                        Created pod: cpu-high-6pdnk
+2s          Normal    Scheduled               pod/cpu-high-6pdnk                  Successfully assigned php-pairs-20261124-125310-83f3/cpu-high-6pdnk to dataeng5-control-plane
+1s          Warning   BackoffLimitExceeded    job/cpu-low                         Job has reached the specified backoff limit
+1s          Normal    Started                 pod/cpu-high-6pdnk                  Container started
+1s          Normal    Created                 pod/cpu-high-6pdnk                  Container created
+1s          Normal    Pulled                  pod/cpu-high-6pdnk                  Container image "php-pairs-hw5:local" already present on machine and can be accessed by the pod
+
+exit=0

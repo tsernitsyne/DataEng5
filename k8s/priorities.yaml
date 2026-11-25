@@ -1,0 +1,17 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: php-pairs-lab-low
+value: -2000
+globalDefault: false
+preemptionPolicy: Never
+description: Low priority for the local PHP pairs experiment.
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: php-pairs-lab-high
+value: -1000
+globalDefault: false
+preemptionPolicy: PreemptLowerPriority
+description: Higher than the low laboratory class, below the ordinary default.

@@ -1,0 +1,31 @@
+{
+  "apiVersion": "v1",
+  "count": 1,
+  "eventTime": null,
+  "firstTimestamp": "2026-11-24T12:55:06Z",
+  "involvedObject": {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "name": "cpu-wait-f2kps",
+    "namespace": "php-pairs-20261124-125310-83f3",
+    "resourceVersion": "979",
+    "uid": "c40490ef-0172-4855-9285-6a76ab6292c3"
+  },
+  "kind": "Event",
+  "lastTimestamp": "2026-11-24T12:55:06Z",
+  "message": "0/1 nodes are available: 1 Insufficient cpu. no new claims to deallocate, preemption: not eligible due to preemptionPolicy=Never.",
+  "metadata": {
+    "creationTimestamp": "2026-11-24T12:55:06Z",
+    "name": "cpu-wait-f2kps.18eafc6395072d79",
+    "namespace": "php-pairs-20261124-125310-83f3",
+    "resourceVersion": "982",
+    "uid": "f79a350b-cc9a-49fe-849f-98fa76dd4198"
+  },
+  "reason": "FailedScheduling",
+  "reportingComponent": "default-scheduler",
+  "reportingInstance": "",
+  "source": {
+    "component": "default-scheduler"
+  },
+  "type": "Warning"
+}

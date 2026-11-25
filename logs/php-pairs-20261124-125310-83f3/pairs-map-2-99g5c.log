@@ -1,0 +1,3 @@
+{"mode": "map", "stage": "start"}
+{"mode": "map", "stage": "count", "key": "runs/php-pairs-20261124-125310-83f3/parts/2.csv", "index": 2}
+{"mode": "map", "index": 2, "key": "runs/php-pairs-20261124-125310-83f3/parts/2.csv", "output": "runs/php-pairs-20261124-125310-83f3/maps/2.csv", "input_rows": 57347, "selected_rows": 1310, "distinct_pairs": 7616, "pair_occurrences": 32496, "peak_bytes": 45858816, "cgroup_limit": "268435456", "peak_source": "/sys/fs/cgroup/memory.peak"}

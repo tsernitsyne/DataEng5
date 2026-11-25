@@ -1,0 +1,83 @@
+$ kubectl --context kind-dataeng5 describe node dataeng5-control-plane
+Name:               dataeng5-control-plane
+Roles:              control-plane
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=dataeng5-control-plane
+                    kubernetes.io/os=linux
+                    node-role.kubernetes.io/control-plane=
+Annotations:        node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Tue, 24 Nov 2026 15:52:22 +0300
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  dataeng5-control-plane
+  AcquireTime:     <unset>
+  RenewTime:       Tue, 24 Nov 2026 15:54:59 +0300
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Tue, 24 Nov 2026 15:53:58 +0300   Tue, 24 Nov 2026 15:52:22 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Tue, 24 Nov 2026 15:53:58 +0300   Tue, 24 Nov 2026 15:52:22 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Tue, 24 Nov 2026 15:53:58 +0300   Tue, 24 Nov 2026 15:52:22 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Tue, 24 Nov 2026 15:53:58 +0300   Tue, 24 Nov 2026 15:52:43 +0300   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  172.22.0.2
+  Hostname:    dataeng5-control-plane
+Capacity:
+  cpu:                12
+  ephemeral-storage:  1055762868Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7992084Ki
+  pods:               110
+Allocatable:
+  cpu:                12
+  ephemeral-storage:  1055762868Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7992084Ki
+  pods:               110
+System Info:
+  Machine ID:                     d15b4777e5244539acaed4b100a751bf
+  System UUID:                    d15b4777e5244539acaed4b100a751bf
+  Boot ID:                        1f6be0e6-0dcc-4f07-9b35-f9ca9124a2cf
+  Kernel Version:                 6.18.58.1-microsoft-standard-WSL2
+  OS Image:                       Debian GNU/Linux 13 (trixie)
+  Operating System:               linux
+  Architecture:                   amd64
+  Container Runtime Version:      containerd://2.3.4
+  Kubelet Version:                v1.36.4
+PodCIDR:                          10.244.0.0/24
+PodCIDRs:                         10.244.0.0/24
+ProviderID:                       kind://docker/dataeng5/dataeng5-control-plane
+Non-terminated Pods:              (10 in total)
+  Namespace                       Name                                              CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                       ----                                              ------------  ----------  ---------------  -------------  ---
+  kube-system                     coredns-589f44dc88-k9dwr                          100m (0%)     0 (0%)      70Mi (0%)        170Mi (2%)     2m31s
+  kube-system                     coredns-589f44dc88-stzkz                          100m (0%)     0 (0%)      70Mi (0%)        170Mi (2%)     2m31s
+  kube-system                     etcd-dataeng5-control-plane                       100m (0%)     0 (0%)      100Mi (1%)       0 (0%)         2m37s
+  kube-system                     kindnet-v9hnl                                     100m (0%)     0 (0%)      50Mi (0%)        0 (0%)         2m31s
+  kube-system                     kube-apiserver-dataeng5-control-plane             250m (2%)     0 (0%)      0 (0%)           0 (0%)         2m39s
+  kube-system                     kube-controller-manager-dataeng5-control-plane    200m (1%)     0 (0%)      0 (0%)           0 (0%)         2m37s
+  kube-system                     kube-proxy-rtqjk                                  0 (0%)        0 (0%)      0 (0%)           0 (0%)         2m31s
+  kube-system                     kube-scheduler-dataeng5-control-plane             100m (0%)     0 (0%)      0 (0%)           0 (0%)         2m37s
+  local-path-storage              local-path-provisioner-56c4685b7c-slrwl           0 (0%)        0 (0%)      0 (0%)           0 (0%)         2m31s
+  php-pairs-20261124-125310-83f3  rustfs-5d5d5d98b9-d22lq                           100m (0%)     0 (0%)      128Mi (1%)       1Gi (13%)      103s
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                1050m (8%)  0 (0%)
+  memory             418Mi (5%)  1364Mi (17%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+  hugepages-2Mi      0 (0%)      0 (0%)
+Events:
+  Type    Reason          Age    From             Message
+  ----    ------          ----   ----             -------
+  Normal  RegisteredNode  2m33s  node-controller  Node dataeng5-control-plane event: Registered Node dataeng5-control-plane in Controller
+
+exit=0

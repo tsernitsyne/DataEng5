@@ -1,0 +1,31 @@
+{
+  "apiVersion": "v1",
+  "count": 1,
+  "eventTime": null,
+  "firstTimestamp": "2026-11-24T12:55:06Z",
+  "involvedObject": {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "name": "cpu-low-sglcj",
+    "namespace": "php-pairs-20261124-125310-83f3",
+    "resourceVersion": "972",
+    "uid": "e7a12ec7-583b-44e8-88f8-845af8350034"
+  },
+  "kind": "Event",
+  "lastTimestamp": "2026-11-24T12:55:06Z",
+  "message": "Preempted by pod f19743d6-900d-4d4e-8910-fbc5b58ece8a on node dataeng5-control-plane",
+  "metadata": {
+    "creationTimestamp": "2026-11-24T12:55:06Z",
+    "name": "cpu-low-sglcj.18eafc63bb2a09e2",
+    "namespace": "php-pairs-20261124-125310-83f3",
+    "resourceVersion": "997",
+    "uid": "d64db037-512a-46bb-97c6-693e467125e2"
+  },
+  "reason": "Preempted",
+  "reportingComponent": "default-scheduler",
+  "reportingInstance": "",
+  "source": {
+    "component": "default-scheduler"
+  },
+  "type": "Normal"
+}

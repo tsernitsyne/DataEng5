@@ -1,0 +1,2 @@
+{"mode": "split", "stage": "start"}
+{"mode": "split", "rows_per_part": [57347, 57347, 57347, 57347], "input_rows": 229388}

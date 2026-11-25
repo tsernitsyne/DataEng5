@@ -1,0 +1,89 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"name\":\"cpu-high\",\"namespace\":\"php-pairs-20261124-125310-83f3\"},\"spec\":{\"activeDeadlineSeconds\":900,\"backoffLimit\":0,\"template\":{\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"args\":[],\"command\":[\"python\",\"-c\",\"import time; time.sleep(300)\"],\"image\":\"php-pairs-hw5:local\",\"imagePullPolicy\":\"IfNotPresent\",\"name\":\"workload\",\"resources\":{\"limits\":{\"cpu\":\"7300m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"7300m\",\"memory\":\"32Mi\"}}}],\"nodeSelector\":{\"kubernetes.io/hostname\":\"dataeng5-control-plane\"},\"priorityClassName\":\"php-pairs-lab-high\",\"restartPolicy\":\"Never\"}}}}\n"
+    },
+    "creationTimestamp": "2026-11-24T12:55:06Z",
+    "generation": 1,
+    "labels": {
+      "batch.kubernetes.io/controller-uid": "5215a197-014b-4b49-89cf-92fbb4118900",
+      "batch.kubernetes.io/job-name": "cpu-high",
+      "controller-uid": "5215a197-014b-4b49-89cf-92fbb4118900",
+      "job-name": "cpu-high"
+    },
+    "name": "cpu-high",
+    "namespace": "php-pairs-20261124-125310-83f3",
+    "resourceVersion": "1059",
+    "uid": "5215a197-014b-4b49-89cf-92fbb4118900"
+  },
+  "spec": {
+    "activeDeadlineSeconds": 900,
+    "backoffLimit": 0,
+    "completionMode": "NonIndexed",
+    "completions": 1,
+    "manualSelector": false,
+    "parallelism": 1,
+    "podReplacementPolicy": "TerminatingOrFailed",
+    "selector": {
+      "matchLabels": {
+        "batch.kubernetes.io/controller-uid": "5215a197-014b-4b49-89cf-92fbb4118900"
+      }
+    },
+    "suspend": false,
+    "template": {
+      "metadata": {
+        "labels": {
+          "batch.kubernetes.io/controller-uid": "5215a197-014b-4b49-89cf-92fbb4118900",
+          "batch.kubernetes.io/job-name": "cpu-high",
+          "controller-uid": "5215a197-014b-4b49-89cf-92fbb4118900",
+          "job-name": "cpu-high"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "command": [
+              "python",
+              "-c",
+              "import time; time.sleep(300)"
+            ],
+            "image": "php-pairs-hw5:local",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "workload",
+            "resources": {
+              "limits": {
+                "cpu": "7300m",
+                "memory": "64Mi"
+              },
+              "requests": {
+                "cpu": "7300m",
+                "memory": "32Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File"
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "nodeSelector": {
+          "kubernetes.io/hostname": "dataeng5-control-plane"
+        },
+        "priorityClassName": "php-pairs-lab-high",
+        "restartPolicy": "Never",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30
+      }
+    }
+  },
+  "status": {
+    "active": 1,
+    "ready": 1,
+    "startTime": "2026-11-24T12:55:06Z",
+    "terminating": 0,
+    "uncountedTerminatedPods": {}
+  }
+}

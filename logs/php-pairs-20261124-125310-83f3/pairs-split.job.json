@@ -1,0 +1,119 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"name\":\"pairs-split\",\"namespace\":\"php-pairs-20261124-125310-83f3\"},\"spec\":{\"activeDeadlineSeconds\":900,\"backoffLimit\":0,\"template\":{\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"args\":[\"split\",\"--prefix\",\"runs/php-pairs-20261124-125310-83f3\",\"--parts\",\"4\"],\"env\":[{\"name\":\"S3_ENDPOINT\",\"value\":\"http://rustfs:9000\"}],\"envFrom\":[{\"secretRef\":{\"name\":\"s3-access\"}}],\"image\":\"php-pairs-hw5:local\",\"imagePullPolicy\":\"IfNotPresent\",\"name\":\"workload\",\"resources\":{\"limits\":{\"cpu\":\"1\",\"memory\":\"768Mi\"},\"requests\":{\"cpu\":\"200m\",\"memory\":\"64Mi\"}}}],\"restartPolicy\":\"Never\"}}}}\n"
+    },
+    "creationTimestamp": "2026-11-24T12:54:26Z",
+    "generation": 1,
+    "labels": {
+      "batch.kubernetes.io/controller-uid": "49df70fb-3ef3-43ae-b742-c5ad5c243752",
+      "batch.kubernetes.io/job-name": "pairs-split",
+      "controller-uid": "49df70fb-3ef3-43ae-b742-c5ad5c243752",
+      "job-name": "pairs-split"
+    },
+    "name": "pairs-split",
+    "namespace": "php-pairs-20261124-125310-83f3",
+    "resourceVersion": "855",
+    "uid": "49df70fb-3ef3-43ae-b742-c5ad5c243752"
+  },
+  "spec": {
+    "activeDeadlineSeconds": 900,
+    "backoffLimit": 0,
+    "completionMode": "NonIndexed",
+    "completions": 1,
+    "manualSelector": false,
+    "parallelism": 1,
+    "podReplacementPolicy": "TerminatingOrFailed",
+    "selector": {
+      "matchLabels": {
+        "batch.kubernetes.io/controller-uid": "49df70fb-3ef3-43ae-b742-c5ad5c243752"
+      }
+    },
+    "suspend": false,
+    "template": {
+      "metadata": {
+        "labels": {
+          "batch.kubernetes.io/controller-uid": "49df70fb-3ef3-43ae-b742-c5ad5c243752",
+          "batch.kubernetes.io/job-name": "pairs-split",
+          "controller-uid": "49df70fb-3ef3-43ae-b742-c5ad5c243752",
+          "job-name": "pairs-split"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "args": [
+              "split",
+              "--prefix",
+              "runs/php-pairs-20261124-125310-83f3",
+              "--parts",
+              "4"
+            ],
+            "env": [
+              {
+                "name": "S3_ENDPOINT",
+                "value": "http://rustfs:9000"
+              }
+            ],
+            "envFrom": [
+              {
+                "secretRef": {
+                  "name": "s3-access"
+                }
+              }
+            ],
+            "image": "php-pairs-hw5:local",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "workload",
+            "resources": {
+              "limits": {
+                "cpu": "1",
+                "memory": "768Mi"
+              },
+              "requests": {
+                "cpu": "200m",
+                "memory": "64Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File"
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Never",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30
+      }
+    }
+  },
+  "status": {
+    "completionTime": "2026-11-24T12:54:49Z",
+    "conditions": [
+      {
+        "lastProbeTime": "2026-11-24T12:54:49Z",
+        "lastTransitionTime": "2026-11-24T12:54:49Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "SuccessCriteriaMet"
+      },
+      {
+        "lastProbeTime": "2026-11-24T12:54:49Z",
+        "lastTransitionTime": "2026-11-24T12:54:49Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "Complete"
+      }
+    ],
+    "ready": 0,
+    "startTime": "2026-11-24T12:54:26Z",
+    "succeeded": 1,
+    "terminating": 0,
+    "uncountedTerminatedPods": {}
+  }
+}

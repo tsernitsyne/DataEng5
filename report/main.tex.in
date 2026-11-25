@@ -1,0 +1,173 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage{fontspec}
+\setmainfont[Path=fonts/,BoldFont=cmunbx.otf,ItalicFont=cmunti.otf]{cmunrm.otf}
+\setmonofont[Path=fonts/]{cmuntt.otf}
+\usepackage[russian]{babel}
+\usepackage[left=30mm,right=15mm,top=20mm,bottom=20mm]{geometry}
+\usepackage{booktabs,amsmath,indentfirst,titlesec}
+\usepackage[hidelinks,unicode]{hyperref}
+\hypersetup{pdftitle={Домашняя работа №5. Kubernetes},pdfauthor={Черницын Егор Артёмович}}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0.38em}
+\setlength{\emergencystretch}{3em}
+\renewcommand{\arraystretch}{1.12}
+\titleformat{\section}{\normalfont\Large}{}{0pt}{}
+\titlespacing*{\section}{0pt}{1.4em}{0.8em}
+
+\begin{document}
+\begin{titlepage}
+\thispagestyle{plain}
+\begin{center}
+{\bfseries Министерство науки и высшего образования Российской\\Федерации\par}
+\vspace{0.2cm}
+{\bfseries ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ\\
+ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО\\
+ОБРАЗОВАНИЯ НАЦИОНАЛЬНЫЙ\\
+ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИТМО\par}
+\vspace{1.8cm}
+{\Large\bfseries Домашняя работа №5\par}
+{\Large\bfseries по дисциплине\par}
+{\Large\bfseries «Инженерия данных»\par}
+\vspace{0.65cm}
+{\large Управление ресурсами в Kubernetes\par}
+\vspace{0.65cm}
+{\Large Семестр V\par}
+\end{center}
+\vfill
+\begin{flushright}
+Выполнил:\\
+студент\\
+Черницын Егор Артёмович\\
+гр. J3310\\
+ИСУ: 467993
+\end{flushright}
+\vspace{1.7cm}
+\begin{center}
+Санкт-Петербург\\2026
+\end{center}
+\end{titlepage}
+\setcounter{page}{2}
+
+\section*{Цель работы}
+Развернуть локальный Kubernetes, перенести RustFS и расчёт пар навыков для вакансий PHP из ДЗ~№3. Проверить остановку по памяти, подобрать лимит и сверить параллельный расчёт с эталоном. Проследить ожидание CPU, вытеснение и действие квоты.
+
+\section*{Развёртывание кластера}
+Одноузловой кластер \texttt{kind-dataeng5} поднят в Docker Desktop на Windows. Версия Kubernetes~@@KUBE@@. Образ собран из \texttt{Dockerfile} и загружен на узел kind. Сценарий \texttt{run\_lab.py} создаёт Job из \texttt{k8s/job.json}.
+
+\begin{verbatim}
+kind create cluster --name dataeng5 `
+  --image kindest/node:v1.36.4
+docker build -t php-pairs-hw5:local .
+kind load docker-image php-pairs-hw5:local --name dataeng5
+\end{verbatim}
+
+\section*{Ограничение памяти}
+Все три Job выполняют один расчёт с заявкой 200m CPU и пределом в одно ядро. При лимите 24~MiB контейнер получил \texttt{OOMKilled} с кодом @@OOM_CODE@@. @@OOM_STAGE@@ При лимите 512~MiB снял пик из \path{@@PEAK_SOURCE@@} после записи результата в S3.
+
+\begin{center}
+\begin{tabular}{lrrrl}
+\toprule
+Job & Заявка, MiB & Лимит, MiB & Пик, MiB & Итог \\
+\midrule
+\texttt{pairs-oom}   & 24 & 24 & --- & \texttt{OOMKilled} \\
+\texttt{pairs-probe} & 64 & 512 & @@PROBE_PEAK@@ & \texttt{Complete} \\
+\texttt{pairs-single} & @@LIMIT@@ & @@LIMIT@@ & @@FINAL_PEAK@@ & \texttt{Complete} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+К пику добавил 25\,\% и округлил вверх до кратного 16~MiB с минимумом 32~MiB. При полученном лимите @@LIMIT@@~MiB Job завершился и записал \texttt{single.csv}. Причина остановки есть в \path{pairs-oom.pods.json}.
+
+\newpage
+\section*{Перенос RustFS в Kubernetes}
+Поднял копию прежнего RustFS с его томами и перенёс бакет \texttt{hh-lake} через S3 API. В кластере RustFS~1.0.0 работает как Deployment с одним Pod, PVC на 4~GiB и Service \texttt{rustfs:9000}. Job берёт учётные данные из Secret.
+
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Ключ объекта & Размер, байт \\
+\midrule
+@@MIGRATION_ROWS@@
+\bottomrule
+\end{tabular}
+\end{center}
+
+Job \texttt{s3-identity} прочитал исходный объект через Service. Размер и SHA-256 совпали с исходником ДЗ~№3.
+\begin{verbatim}
+@@SHA@@
+\end{verbatim}
+
+\section*{Параллельный расчёт}
+Job \texttt{pairs-split} разложил целые записи CSV по четырём частям по кругу. Каждый Pod индексированного \texttt{pairs-map} прочитал часть по \path{JOB_COMPLETION_INDEX} и записал частоты в S3. \texttt{pairs-reduce} просуммировал частоты каждой пары по четырём частям.
+
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+Индекс & Записей в части & Вакансий PHP & Разных пар \\
+\midrule
+@@WORKER_ROWS@@
+\bottomrule
+\end{tabular}
+\end{center}
+
+@@OVERLAP@@ Отметки сохранены в \path{pairs-map.pods.json}.
+
+\newpage
+\section*{Сверка с ДЗ №3}
+Роль вакансии должна быть равна «Программист, разработчик», а название должно содержать отдельное слово PHP без учёта регистра. Навыки приведены к нижнему регистру, пробелы по краям и дубликаты удалены. Частота пары равна числу вакансий, в которых присутствуют оба навыка.
+
+Из @@INPUT_ROWS@@ записей отобрано @@SELECTED@@ вакансий. Получено @@DISTINCT@@ разных пар и @@OCCURRENCES@@ вхождений. Одиночный и параллельный результаты сверил с \path{reference/skills_2.csv} по каждой паре. Все частоты совпали. При равной частоте пары упорядочиваются лексикографически.
+
+\begin{center}
+\begin{tabular}{rlrr}
+\toprule
+№ & Пара навыков & Kubernetes & ДЗ №3 \\
+\midrule
+@@TOP_ROWS@@
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Ожидание при нехватке CPU}
+На узле доступно для Pod @@ALLOCATABLE@@m CPU, из них @@RESERVED@@m уже учтены в заявках. Каждый из двух Job с приоритетом $-2000$ запросил @@CPU@@m. Первый Pod запустился, а для второго заявка превышала остаток. В момент проверки второй Pod был в фазе \texttt{Pending}, а планировщик записал \texttt{FailedScheduling} с сообщением \texttt{Insufficient cpu}. Контейнеры в этом опыте выполняли \texttt{sleep}, поэтому результат определялся заявками CPU.
+
+\begin{verbatim}
+@@CPU_EVENT@@
+\end{verbatim}
+
+\newpage
+\section*{Вытеснение по приоритету}
+После проверки ожидания удалил Job \texttt{cpu-wait}. Первый Pod продолжал занимать заявку @@CPU@@m. Создал \texttt{cpu-high} с такой же заявкой и приоритетом $-1000$. Политика \texttt{PreemptLowerPriority} разрешила планировщику освободить ресурсы за счёт Pod с приоритетом $-2000$.
+
+\begin{verbatim}
+@@PREEMPT_EVENT@@
+\end{verbatim}
+
+Планировщик записал \texttt{Preempted} для Pod \texttt{@@VICTIM@@}. Pod \texttt{@@WINNER@@} перешёл в \texttt{Running}. Событие жертвы и состояния обоих Pod сохранены в журналах.
+
+\section*{Квота пространства имён}
+В отдельном namespace квота \texttt{cpu-budget} ограничила сумму \texttt{requests.cpu} до @@QUOTA_HARD@@. Первый Job с заявкой @@QUOTA_USED@@ создал Pod. Контроллер второго Job с заявкой @@QUOTA_REQUEST@@ получил \texttt{FailedCreate}. Причина зафиксирована при допуске объекта Pod в API, поэтому у второго Job список Pod остался пустым.
+
+\begin{verbatim}
+@@QUOTA_EVENT@@
+\end{verbatim}
+
+Заявка CPU в первом опыте проверялась планировщиком уже созданного Pod. Квота проверила сумму заявок пространства имён до планирования. Вытеснение освободило ресурсы подходящего узла для Pod более высокого приоритета.
+
+\section*{Журналы запуска}
+В каталоге \path{logs/@@RUN@@/} сохранены манифесты Job, события, состояния Pod и вывод контейнеров. \texttt{run.json} фиксирует измерения и результат сверки, \texttt{pairs.csv} содержит итоговые частоты, а \texttt{single.csv} --- контрольный одиночный расчёт.
+
+\newpage
+\section*{Сравнение Kubernetes, YARN и Mesos}
+Все три системы делят CPU и память кластера между приложениями. Размещение координируется на уровне кластера, а задачи запускают компоненты на узлах. Единица размещения и смысл квоты зависят от системы.
+
+\textbf{Kubernetes.} Планировщик размещает Pod с учётом заявок. \texttt{PriorityClass} задаёт приоритет и политику вытеснения, а \texttt{ResourceQuota} ограничивает суммарные заявки при допуске. Плюс --- единый API для Job, хранилища и сети. Для гарантированных долей очередей нужны дополнительные механизмы.
+
+\textbf{Hadoop YARN.} ResourceManager выделяет контейнеры по запросам ApplicationMaster. NodeManager запускает их на узлах. CapacityScheduler задаёт доли и максимумы очередей и при включённом вытеснении возвращает ресурсы, занятые сверх доли. Плюс --- очереди и интеграция с Hadoop. Минус --- зависимость от поддержки YARN движком.
+
+\textbf{Apache Mesos.} Master выдаёт предложения ресурсов по ролям, по умолчанию по взвешенной Dominant Resource Fairness. Квота задаётся на роль. Фреймворк выбирает ресурсы, а агент запускает задачи. Плюс --- гибкость размещения. Минусы --- зависимость от планировщиков фреймворков и прекращение развития Mesos.
+
+\section*{Вывод}
+Для этой работы выбрал бы Kubernetes, поскольку один кластер разместил RustFS и оба варианта расчёта. Для общего Hadoop-кластера выбрал бы YARN, если командам нужны гарантированные доли очередей.
+
+\end{document}

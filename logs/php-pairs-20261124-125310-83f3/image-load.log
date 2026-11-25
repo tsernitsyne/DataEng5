@@ -1,0 +1,4 @@
+$ kind load docker-image php-pairs-hw5:local --name dataeng5
+Image: "php-pairs-hw5:local" with ID "sha256:061f7bec1552c3a52b1f7e876f094cbdb557abeb7717efa501001107354f3503" not yet present on node "dataeng5-control-plane", loading...
+
+exit=0

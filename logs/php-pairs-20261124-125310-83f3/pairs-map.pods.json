@@ -1,0 +1,878 @@
+[
+  {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "annotations": {
+        "batch.kubernetes.io/job-completion-index": "0"
+      },
+      "creationTimestamp": "2026-11-24T12:54:50Z",
+      "generateName": "pairs-map-0-",
+      "generation": 1,
+      "labels": {
+        "batch.kubernetes.io/controller-uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca",
+        "batch.kubernetes.io/job-completion-index": "0",
+        "batch.kubernetes.io/job-name": "pairs-map",
+        "controller-uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca",
+        "job-name": "pairs-map"
+      },
+      "name": "pairs-map-0-t2rt2",
+      "namespace": "php-pairs-20261124-125310-83f3",
+      "ownerReferences": [
+        {
+          "apiVersion": "batch/v1",
+          "blockOwnerDeletion": true,
+          "controller": true,
+          "kind": "Job",
+          "name": "pairs-map",
+          "uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca"
+        }
+      ],
+      "resourceVersion": "923",
+      "uid": "d4628739-9850-453c-bb73-f35c3359b66a"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "args": [
+            "map",
+            "--prefix",
+            "runs/php-pairs-20261124-125310-83f3"
+          ],
+          "env": [
+            {
+              "name": "S3_ENDPOINT",
+              "value": "http://rustfs:9000"
+            },
+            {
+              "name": "JOB_COMPLETION_INDEX",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.labels['batch.kubernetes.io/job-completion-index']"
+                }
+              }
+            }
+          ],
+          "envFrom": [
+            {
+              "secretRef": {
+                "name": "s3-access"
+              }
+            }
+          ],
+          "image": "php-pairs-hw5:local",
+          "imagePullPolicy": "IfNotPresent",
+          "name": "workload",
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "64Mi"
+            }
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "hostname": "pairs-map-0",
+      "nodeName": "dataeng5-control-plane",
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Never",
+      "schedulerName": "default-scheduler",
+      "securityContext": {},
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "allocatedResources": {
+        "cpu": "200m",
+        "memory": "64Mi"
+      },
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:55Z",
+          "observedGeneration": 1,
+          "status": "False",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:50Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:54Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:54Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:50Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containerStatuses": [
+        {
+          "allocatedResources": {
+            "cpu": "200m",
+            "memory": "64Mi"
+          },
+          "containerID": "containerd://71bb5c957b0655aaa9ca8f0ffeb9c8a37c7024530d386598927c64ccb320b4fb",
+          "image": "docker.io/library/php-pairs-hw5:local",
+          "imageID": "docker.io/library/import-2026-11-24@sha256:4aab2fd19a46806b40d0d2a1175239d4e7ace1daf229ee133d01defe899f4cb3",
+          "lastState": {},
+          "name": "workload",
+          "ready": false,
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "64Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": false,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://71bb5c957b0655aaa9ca8f0ffeb9c8a37c7024530d386598927c64ccb320b4fb",
+              "exitCode": 0,
+              "finishedAt": "2026-11-24T12:54:53Z",
+              "reason": "Completed",
+              "startedAt": "2026-11-24T12:54:50Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 0,
+              "supplementalGroups": [
+                0
+              ],
+              "uid": 10001
+            }
+          }
+        }
+      ],
+      "hostIP": "172.22.0.2",
+      "hostIPs": [
+        {
+          "ip": "172.22.0.2"
+        }
+      ],
+      "observedGeneration": 1,
+      "phase": "Succeeded",
+      "podIP": "10.244.0.12",
+      "podIPs": [
+        {
+          "ip": "10.244.0.12"
+        }
+      ],
+      "qosClass": "Burstable",
+      "resources": {
+        "requests": {
+          "memory": "64Mi"
+        }
+      },
+      "startTime": "2026-11-24T12:54:50Z"
+    }
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "annotations": {
+        "batch.kubernetes.io/job-completion-index": "1"
+      },
+      "creationTimestamp": "2026-11-24T12:54:50Z",
+      "generateName": "pairs-map-1-",
+      "generation": 1,
+      "labels": {
+        "batch.kubernetes.io/controller-uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca",
+        "batch.kubernetes.io/job-completion-index": "1",
+        "batch.kubernetes.io/job-name": "pairs-map",
+        "controller-uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca",
+        "job-name": "pairs-map"
+      },
+      "name": "pairs-map-1-87mzj",
+      "namespace": "php-pairs-20261124-125310-83f3",
+      "ownerReferences": [
+        {
+          "apiVersion": "batch/v1",
+          "blockOwnerDeletion": true,
+          "controller": true,
+          "kind": "Job",
+          "name": "pairs-map",
+          "uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca"
+        }
+      ],
+      "resourceVersion": "922",
+      "uid": "6f8e7b39-1b84-4830-90b2-85d9767d86fb"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "args": [
+            "map",
+            "--prefix",
+            "runs/php-pairs-20261124-125310-83f3"
+          ],
+          "env": [
+            {
+              "name": "S3_ENDPOINT",
+              "value": "http://rustfs:9000"
+            },
+            {
+              "name": "JOB_COMPLETION_INDEX",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.labels['batch.kubernetes.io/job-completion-index']"
+                }
+              }
+            }
+          ],
+          "envFrom": [
+            {
+              "secretRef": {
+                "name": "s3-access"
+              }
+            }
+          ],
+          "image": "php-pairs-hw5:local",
+          "imagePullPolicy": "IfNotPresent",
+          "name": "workload",
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "64Mi"
+            }
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "hostname": "pairs-map-1",
+      "nodeName": "dataeng5-control-plane",
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Never",
+      "schedulerName": "default-scheduler",
+      "securityContext": {},
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "allocatedResources": {
+        "cpu": "200m",
+        "memory": "64Mi"
+      },
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:55Z",
+          "observedGeneration": 1,
+          "status": "False",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:50Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:54Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:54Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:50Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containerStatuses": [
+        {
+          "allocatedResources": {
+            "cpu": "200m",
+            "memory": "64Mi"
+          },
+          "containerID": "containerd://852632b7ab8aa7b88d6da27e75cd87238a454fea7a311df1a76c833653a73c59",
+          "image": "docker.io/library/php-pairs-hw5:local",
+          "imageID": "docker.io/library/import-2026-11-24@sha256:4aab2fd19a46806b40d0d2a1175239d4e7ace1daf229ee133d01defe899f4cb3",
+          "lastState": {},
+          "name": "workload",
+          "ready": false,
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "64Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": false,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://852632b7ab8aa7b88d6da27e75cd87238a454fea7a311df1a76c833653a73c59",
+              "exitCode": 0,
+              "finishedAt": "2026-11-24T12:54:53Z",
+              "reason": "Completed",
+              "startedAt": "2026-11-24T12:54:50Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 0,
+              "supplementalGroups": [
+                0
+              ],
+              "uid": 10001
+            }
+          }
+        }
+      ],
+      "hostIP": "172.22.0.2",
+      "hostIPs": [
+        {
+          "ip": "172.22.0.2"
+        }
+      ],
+      "observedGeneration": 1,
+      "phase": "Succeeded",
+      "podIP": "10.244.0.13",
+      "podIPs": [
+        {
+          "ip": "10.244.0.13"
+        }
+      ],
+      "qosClass": "Burstable",
+      "resources": {
+        "requests": {
+          "memory": "64Mi"
+        }
+      },
+      "startTime": "2026-11-24T12:54:50Z"
+    }
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "annotations": {
+        "batch.kubernetes.io/job-completion-index": "2"
+      },
+      "creationTimestamp": "2026-11-24T12:54:50Z",
+      "generateName": "pairs-map-2-",
+      "generation": 1,
+      "labels": {
+        "batch.kubernetes.io/controller-uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca",
+        "batch.kubernetes.io/job-completion-index": "2",
+        "batch.kubernetes.io/job-name": "pairs-map",
+        "controller-uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca",
+        "job-name": "pairs-map"
+      },
+      "name": "pairs-map-2-99g5c",
+      "namespace": "php-pairs-20261124-125310-83f3",
+      "ownerReferences": [
+        {
+          "apiVersion": "batch/v1",
+          "blockOwnerDeletion": true,
+          "controller": true,
+          "kind": "Job",
+          "name": "pairs-map",
+          "uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca"
+        }
+      ],
+      "resourceVersion": "925",
+      "uid": "fc5c02c5-739f-4639-b77b-f60a173272ec"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "args": [
+            "map",
+            "--prefix",
+            "runs/php-pairs-20261124-125310-83f3"
+          ],
+          "env": [
+            {
+              "name": "S3_ENDPOINT",
+              "value": "http://rustfs:9000"
+            },
+            {
+              "name": "JOB_COMPLETION_INDEX",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.labels['batch.kubernetes.io/job-completion-index']"
+                }
+              }
+            }
+          ],
+          "envFrom": [
+            {
+              "secretRef": {
+                "name": "s3-access"
+              }
+            }
+          ],
+          "image": "php-pairs-hw5:local",
+          "imagePullPolicy": "IfNotPresent",
+          "name": "workload",
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "64Mi"
+            }
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "hostname": "pairs-map-2",
+      "nodeName": "dataeng5-control-plane",
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Never",
+      "schedulerName": "default-scheduler",
+      "securityContext": {},
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "allocatedResources": {
+        "cpu": "200m",
+        "memory": "64Mi"
+      },
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:55Z",
+          "observedGeneration": 1,
+          "status": "False",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:50Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:54Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:54Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:50Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containerStatuses": [
+        {
+          "allocatedResources": {
+            "cpu": "200m",
+            "memory": "64Mi"
+          },
+          "containerID": "containerd://647f764b7a3b530b9fb20ec36d96844b51ebfe0a391ab131826869e6cb2482d5",
+          "image": "docker.io/library/php-pairs-hw5:local",
+          "imageID": "docker.io/library/import-2026-11-24@sha256:4aab2fd19a46806b40d0d2a1175239d4e7ace1daf229ee133d01defe899f4cb3",
+          "lastState": {},
+          "name": "workload",
+          "ready": false,
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "64Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": false,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://647f764b7a3b530b9fb20ec36d96844b51ebfe0a391ab131826869e6cb2482d5",
+              "exitCode": 0,
+              "finishedAt": "2026-11-24T12:54:53Z",
+              "reason": "Completed",
+              "startedAt": "2026-11-24T12:54:50Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 0,
+              "supplementalGroups": [
+                0
+              ],
+              "uid": 10001
+            }
+          }
+        }
+      ],
+      "hostIP": "172.22.0.2",
+      "hostIPs": [
+        {
+          "ip": "172.22.0.2"
+        }
+      ],
+      "observedGeneration": 1,
+      "phase": "Succeeded",
+      "podIP": "10.244.0.14",
+      "podIPs": [
+        {
+          "ip": "10.244.0.14"
+        }
+      ],
+      "qosClass": "Burstable",
+      "resources": {
+        "requests": {
+          "memory": "64Mi"
+        }
+      },
+      "startTime": "2026-11-24T12:54:50Z"
+    }
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "annotations": {
+        "batch.kubernetes.io/job-completion-index": "3"
+      },
+      "creationTimestamp": "2026-11-24T12:54:50Z",
+      "generateName": "pairs-map-3-",
+      "generation": 1,
+      "labels": {
+        "batch.kubernetes.io/controller-uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca",
+        "batch.kubernetes.io/job-completion-index": "3",
+        "batch.kubernetes.io/job-name": "pairs-map",
+        "controller-uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca",
+        "job-name": "pairs-map"
+      },
+      "name": "pairs-map-3-jbkdr",
+      "namespace": "php-pairs-20261124-125310-83f3",
+      "ownerReferences": [
+        {
+          "apiVersion": "batch/v1",
+          "blockOwnerDeletion": true,
+          "controller": true,
+          "kind": "Job",
+          "name": "pairs-map",
+          "uid": "5ea943f6-4c3e-42fd-af32-76c4fa13f5ca"
+        }
+      ],
+      "resourceVersion": "928",
+      "uid": "058c81ff-3a64-4537-96bf-7e469c47d21a"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "args": [
+            "map",
+            "--prefix",
+            "runs/php-pairs-20261124-125310-83f3"
+          ],
+          "env": [
+            {
+              "name": "S3_ENDPOINT",
+              "value": "http://rustfs:9000"
+            },
+            {
+              "name": "JOB_COMPLETION_INDEX",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.labels['batch.kubernetes.io/job-completion-index']"
+                }
+              }
+            }
+          ],
+          "envFrom": [
+            {
+              "secretRef": {
+                "name": "s3-access"
+              }
+            }
+          ],
+          "image": "php-pairs-hw5:local",
+          "imagePullPolicy": "IfNotPresent",
+          "name": "workload",
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "64Mi"
+            }
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "hostname": "pairs-map-3",
+      "nodeName": "dataeng5-control-plane",
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Never",
+      "schedulerName": "default-scheduler",
+      "securityContext": {},
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "allocatedResources": {
+        "cpu": "200m",
+        "memory": "64Mi"
+      },
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:55Z",
+          "observedGeneration": 1,
+          "status": "False",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:50Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:54Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:54Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-24T12:54:50Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containerStatuses": [
+        {
+          "allocatedResources": {
+            "cpu": "200m",
+            "memory": "64Mi"
+          },
+          "containerID": "containerd://1a25f58f98cdd0ffa26430b6501f6fd3f4f0ee16a9b88b495254a86ad4b32926",
+          "image": "docker.io/library/php-pairs-hw5:local",
+          "imageID": "docker.io/library/import-2026-11-24@sha256:4aab2fd19a46806b40d0d2a1175239d4e7ace1daf229ee133d01defe899f4cb3",
+          "lastState": {},
+          "name": "workload",
+          "ready": false,
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "200m",
+              "memory": "64Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": false,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://1a25f58f98cdd0ffa26430b6501f6fd3f4f0ee16a9b88b495254a86ad4b32926",
+              "exitCode": 0,
+              "finishedAt": "2026-11-24T12:54:53Z",
+              "reason": "Completed",
+              "startedAt": "2026-11-24T12:54:50Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 0,
+              "supplementalGroups": [
+                0
+              ],
+              "uid": 10001
+            }
+          }
+        }
+      ],
+      "hostIP": "172.22.0.2",
+      "hostIPs": [
+        {
+          "ip": "172.22.0.2"
+        }
+      ],
+      "observedGeneration": 1,
+      "phase": "Succeeded",
+      "podIP": "10.244.0.15",
+      "podIPs": [
+        {
+          "ip": "10.244.0.15"
+        }
+      ],
+      "qosClass": "Burstable",
+      "resources": {
+        "requests": {
+          "memory": "64Mi"
+        }
+      },
+      "startTime": "2026-11-24T12:54:50Z"
+    }
+  }
+]

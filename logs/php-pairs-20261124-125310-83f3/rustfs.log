@@ -1,0 +1,14 @@
+$ kubectl --context kind-dataeng5 -n php-pairs-20261124-125310-83f3 get deploy,svc,pvc,pod -o wide
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                SELECTOR
+deployment.apps/rustfs   1/1     1            1           22s   rustfs       rustfs/rustfs:1.0.0   app=rustfs
+
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+service/rustfs   ClusterIP   10.96.193.100   <none>        9000/TCP   22s   app=rustfs
+
+NAME                                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE   VOLUMEMODE
+persistentvolumeclaim/rustfs-data   Bound    pvc-77e215ae-1c9a-426f-9f7c-13252e01d69e   4Gi        RWO            standard       <unset>                 22s   Filesystem
+
+NAME                          READY   STATUS    RESTARTS   AGE   IP           NODE                     NOMINATED NODE   READINESS GATES
+pod/rustfs-5d5d5d98b9-d22lq   1/1     Running   0          22s   10.244.0.6   dataeng5-control-plane   <none>           <none>
+
+exit=0

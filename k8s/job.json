@@ -1,0 +1,27 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {"name": "pairs-probe"},
+  "spec": {
+    "activeDeadlineSeconds": 900,
+    "backoffLimit": 0,
+    "template": {
+      "spec": {
+        "restartPolicy": "Never",
+        "automountServiceAccountToken": false,
+        "containers": [{
+          "name": "workload",
+          "image": "php-pairs-hw5:local",
+          "imagePullPolicy": "IfNotPresent",
+          "args": ["count", "--prefix", "runs/manual"],
+          "env": [{"name": "S3_ENDPOINT", "value": "http://rustfs:9000"}],
+          "envFrom": [{"secretRef": {"name": "s3-access"}}],
+          "resources": {
+            "requests": {"cpu": "200m", "memory": "64Mi"},
+            "limits": {"cpu": "1", "memory": "512Mi"}
+          }
+        }]
+      }
+    }
+  }
+}

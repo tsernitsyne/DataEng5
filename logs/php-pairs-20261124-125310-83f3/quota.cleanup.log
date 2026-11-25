@@ -1,0 +1,5 @@
+$ kubectl --context kind-dataeng5 -n php-pairs-20261124-125310-83f3-quota delete job quota-admitted quota-rejected --ignore-not-found
+job.batch "quota-admitted" deleted from php-pairs-20261124-125310-83f3-quota namespace
+job.batch "quota-rejected" deleted from php-pairs-20261124-125310-83f3-quota namespace
+
+exit=0

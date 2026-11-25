@@ -1,0 +1,5 @@
+$ kubectl --context kind-dataeng5 -n php-pairs-20261124-125310-83f3 delete job cpu-low cpu-high --ignore-not-found
+job.batch "cpu-low" deleted from php-pairs-20261124-125310-83f3 namespace
+job.batch "cpu-high" deleted from php-pairs-20261124-125310-83f3 namespace
+
+exit=0
